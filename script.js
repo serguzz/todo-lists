@@ -121,12 +121,8 @@
 
       // removes a TODO Note from the todoLists array
       removeTodoNote(listIndex){
-        if(confirm("Do you really want to delete?")) {
-
-            this.todoListsBackup = this.todoLists.slice();
-            this.todoLists.splice(listIndex, 1);
-                 
-        }
+          this.todoListsBackup = this.todoLists.slice();
+          this.todoLists.splice(listIndex, 1);
       },
 
       //

@@ -78,7 +78,6 @@
                     <button type="button" class="btn-sm btn-outline-danger" data-toggle="modal" data-target="#my_modal" v-on:click="setCurrentNote(listIndex)">
                       ❌ Delete Note ❌
                     </button>
-                    <button class="btn btn-sm btn-outline-danger" v-on:click="removeTodoNote(listIndex)">❌ Delete Note ❌</button>
                 </div>
              </div>
            </div>
@@ -149,18 +148,15 @@
                                     title="Save your Notes"
                                     v-on:click="exportNotesToFile()">Download...
                             </button>
-                            
                         </div>
                         
                         <div class="add-todo-note row mb-2">
-                            <div class="col-md-9"><div class="task__title">Import Notes from:</div><input v-on:change="setFileVariable" class="mb-2" type="file">
+                            <div class="col-md-9"><div class="task__title">Import Notes from a file:</div><input v-on:change="setFileVariable" class="mb-2" type="file">
                             </div>
-                            
                             <button type="button" class="col-md-3 btn-sm btn-outline-danger"
                                     title="Choose a file for Import"
                                     v-on:click="importNotesFromFile()">Import ...
                             </button>
-                            
                         </div>
                     </div>
                     <div class="card-footer">
