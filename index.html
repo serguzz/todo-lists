@@ -18,7 +18,7 @@
   <div id="app" class="main-container">
     
     <!-- The heading of the application -->
-    <div class="text-center">
+    <div class="text-center main-header">
         <h1>TODO Lists Application</h1>
         <h4> Create, modify or delete TODO Lists for your purposes</h4>
   
@@ -40,20 +40,33 @@
 
 <!-- ----------------------------------------------------------------------------------->
                 <div class="note-header">
-                    <h3 class="note__title">{{"TODO Note #" + listIndex + "."}}</h3>
-                    <h4 class="note__title">{{" You have : " + todoList.length + " tasks."}}</h4>
+                    <h3 class="note__title">{{"TODO Note #" + (listIndex+1) + "."}}</h3>
+
+                    <!-- Displaying information about current Note -->
+                    <div v-if="todoLists[listIndex].length === 0">
+                        <h4 class="note__title">NO tasks found in this note ! </h4>
+
+                    </div>
+                    <div v-else-if="countOpenTasks(listIndex) === 0">
+                        <h4 class="note__title"> You finished all the tasks ! </h4>
+                    </div>
+                    <div v-else>
+                        <h4 class="note__title">{{" You have " + countOpenTasks(listIndex) + " tasks to do."}}</h4>
+                    </div>
                     
                 </div>
 
-                <todo-item  @remove_todo_item="removeTodoItem(listIndex, index)" :key="index"
-                            @check_todo_item="checkTodoItem(listIndex, index)" :key="index"           
-                            v-for="(todoItem,index) in todoList" :data="todoItem">
-  
-                </todo-item>
+                <div class="todo-items-container">
+                    <todo-item  @remove_todo_item="removeTodoItem(listIndex, index)" :key="index"
+                                @check_todo_item="checkTodoItem(listIndex, index)" :key="index"           
+                                v-for="(todoItem,index) in todoList" :data="todoItem">
+    
+                    </todo-item>
+                </div>
 
                 <div class="add_task">
                     <div class="add_task__input ">
-                        <input v-on:keyup.enter="addTodoItem(listIndex)" placeholder="Add todo Item ..." type="text" v-model="newTodoItems[listIndex]">
+                        <input v-on:keyup.enter="addTodoItem(listIndex)" placeholder="Add TODO Item ..." type="text" v-model="newTodoItems[listIndex]">
                     </div>
                     <button class="add_task__btn" @click="addTodoItem(listIndex)">➕</button>
                 </div>
@@ -61,7 +74,7 @@
 <!-- ----------------------------------------------------------------------------------->
 
                <div class="card-footer">
-                <button class="btn btn-sm btn-outline-danger" v-on:click="removeTodoNote(listIndex)">Delete TODO Note</button>
+                <button class="btn btn-sm btn-outline-danger" v-on:click="removeTodoNote(listIndex)">❌ Delete Note ❌</button>
 
                 </div>
                 
@@ -74,40 +87,42 @@
           Undo last action (for backup)
           -->
         <div class="col-md-4"> 
-            <div class="blogpost-card card mb-4 shadow-sm">
+            <div class="card mb-4 shadow-sm">
                 <div class="card-body">
                     <div class="note-header">
                         <h3 class="note__title">{{"CONTROL PANEL"}}</h3>
                         <h4 class="note__title">{{" e.g., Create new TODO Note."}}</h4>
                     </div>
                     
-                    <div class="add-todo-note row mb-2">
-                        <div class="col-8"> Add more Notes!</div>
-                        <button class="col btn btn-sm btn-outline-success" v-on:click="addTodoNote()">Add Note</button>
-                      
-                    </div>
-
-                    
-                    <div class="add-todo-note row mb-2">
-                        <div class="col-8"> Made a mistake?</div>
-                        <button class="col btn btn-sm btn-outline-danger" v-on:click="undoLastAction()">Undo </button>
-                      
-                    </div>
-
-                   
-                    <div class="add-todo-note row mb-2">
-                        <div class="col-8"> Download TODO Notes</div>                        
-                        <button class="col btn btn-sm btn-outline-success" v-on:click="exportNotesToFile()">Download ...</button>
-                      
-                    </div>
-                    
-                    <div class="add-todo-note row mb-2">
-                        <div class="col-8">Import from File:</div>
-                        <div class="col"><input v-on:change="setFileVariable" class="mb-2" type="file"></div>
-                        <button class="col btn btn-sm btn-outline-danger" v-on:click="importNotesFromFile()">Import ...</button>
+                    <div class="todo-items-container">
+                        <div class="add-todo-note row mb-2">
+                            <div class="col-md-9 task__title"> Add more Notes!</div>
+                            <button class="col-md-3 btn btn-sm btn-outline-success" v-on:click="addTodoNote()">Add Note</button>
                         
-                    </div>
+                        </div>
 
+                        
+                        <div class="add-todo-note row mb-2">
+                            <div class="col-md-9 task__title"> Made a mistake?</div>
+                            <button class="col-md-3 btn btn-sm btn-outline-danger" v-on:click="undoLastAction()">Undo </button>
+                        
+                        </div>
+
+                    
+                        <div class="add-todo-note row mb-2">
+                            <div class="col-md-9 task__title"> Download ALL Notes</div>                        
+                            <button class="col-md-3 btn btn-sm btn-outline-success" v-on:click="exportNotesToFile()">Download ...</button>
+                            
+                        </div>
+                        
+                        <div class="add-todo-note row mb-2">
+                            <div class="col-md-9"><div class="task__title">Import Notes from:</div><input v-on:change="setFileVariable" class="mb-2" type="file">
+                            </div>
+                            
+                            <button class="col-md-3 btn btn-sm btn-outline-danger" v-on:click="importNotesFromFile()">Import ...</button>
+                            
+                        </div>
+                    </div>
                     <div class="card-footer">
         
                     </div>

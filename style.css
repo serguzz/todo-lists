@@ -1,6 +1,7 @@
 :root {
     --main: #2F4858;
-    --white: #fff;
+    --headers-color: #530618;
+    --white: #DBC2C8;
   }
   * {
     padding: 0;
@@ -20,14 +21,21 @@
     visibility: 0.2;
   }
 
-
+  .main-header {
+    margin: 20px 0 25px;
+  }
   .note-header {
     margin: 0px;
+    ;
+  }
+  .todo-items-container {
+    margin-top: 25px;
+    margin-bottom: 10px;
   }
   .note__title {
     margin: -10px -10px 10px -10px;
     padding: 10px;
-    background-color: var(--main);
+    background-color: var(--headers-color);
     color: var(--white);
     font-weight: 500;
   }
@@ -86,7 +94,7 @@
     width: 80%;
   }
   .add-todo-note {
-    width: 80%;
+    width: 100%;
   }
   .add_task__input input, textarea {
     width: 100%;

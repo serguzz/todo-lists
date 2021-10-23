@@ -49,47 +49,39 @@
 
       //initial sample values of TODO Notes
       todoLists: [
-
-        [          
-          {
-            value: '1.1 Try to implement Calculator App',
-            isDone: false,
-          },
-          {
-            value: '1.2 Read a book "Vue.js in action',
-            isDone: false,
-          },
-          { 
-            value: '1.3 Learn Nest.js',
-            isDone: false,
-          },
-          { 
-            value: '1.4',
-            isDone: false,
-          }
-        ],
-        [          
-          { 
-            value:  '2.1 Implement a web store',
-            isDone: false,
-          },
-          { 
-            value:  '2.2 Read "Thinking Java" ',
-            isDone: false,
-          }
-        ],
-        [ 
-          { 
-            value: '3.1 Learn basics of Vue',
-            isDone: false,
-          }
-        ],
-        [
-          { 
-            value:  '4.1 Study English',
-            isDone: false,
-          }
-        ],
+          [          
+              { 
+                value: '1.1 Implement Calculator App',
+                isDone: true,
+              },
+              {
+                value: '1.2 Read a book "Vue.js in action',
+                isDone: false,
+              },
+              { 
+                value: '1.3 Learn Nest.js',
+                isDone: false,
+              },
+              { 
+                value: '1.4',
+                isDone: false,
+              },
+              
+          ],
+          [          
+              { 
+                value:  '2.1 Implement a web store',
+                isDone: false,
+              },
+              { 
+                value:  '2.2 Read "Thinking Java" ',
+                isDone: false,
+              },
+              { 
+                value:  '2.3 Read "Gang of Four" ',
+                isDone: false,
+              }
+          ]
       ],
 
       // variable for storing back-up array of all TODO Notes 
@@ -101,6 +93,19 @@
     },
 
     methods: {
+
+      // returns the number of NOT DONE tasks in the todoList
+      countOpenTasks (listIndex){
+          
+          let i = 0;
+          for (todoItem of this.todoLists[listIndex]) {
+            if (!todoItem.isDone) {
+              i++;
+            }
+          }
+          return i;
+      },
+
 
       // adds new TODO Item from the related input to the TODO Note
       addTodoItem(listIndex) {
