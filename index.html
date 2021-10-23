@@ -97,21 +97,30 @@
                     <div class="todo-items-container">
                         <div class="add-todo-note row mb-2">
                             <div class="col-md-9 task__title"> Add more Notes!</div>
-                            <button class="col-md-3 btn btn-sm btn-outline-success" v-on:click="addTodoNote()">Add Note</button>
+                            <button class="col-md-3 btn btn-sm btn-outline-success"
+                                title="Create TODO Note"
+                                 v-on:click="addTodoNote()">Add Note
+                            </button>
                         
                         </div>
 
                         
                         <div class="add-todo-note row mb-2">
                             <div class="col-md-9 task__title"> Made a mistake?</div>
-                            <button class="col-md-3 btn btn-sm btn-outline-danger" v-on:click="undoLastAction()">Undo </button>
+                            <button class="col-md-3 btn btn-sm btn-outline-danger"
+                                    title="Undo last Action"
+                                    v-on:click="undoLastAction()">Undo
+                            </button>
                         
                         </div>
 
                     
                         <div class="add-todo-note row mb-2">
                             <div class="col-md-9 task__title"> Download ALL Notes</div>                        
-                            <button class="col-md-3 btn btn-sm btn-outline-success" v-on:click="exportNotesToFile()">Download ...</button>
+                            <button class="col-md-3 btn btn-sm btn-outline-success"
+                                    title="Save your Notes"
+                                    v-on:click="exportNotesToFile()">Download ...
+                            </button>
                             
                         </div>
                         
@@ -119,7 +128,10 @@
                             <div class="col-md-9"><div class="task__title">Import Notes from:</div><input v-on:change="setFileVariable" class="mb-2" type="file">
                             </div>
                             
-                            <button class="col-md-3 btn btn-sm btn-outline-danger" v-on:click="importNotesFromFile()">Import ...</button>
+                            <button class="col-md-3 btn btn-sm btn-outline-danger"
+                                    title="Choose a file for Import"
+                                    v-on:click="importNotesFromFile()">Import ...
+                            </button>
                             
                         </div>
                     </div>
