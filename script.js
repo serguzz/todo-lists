@@ -47,6 +47,9 @@
       // this vue model is connected to inputs of new TODO Items in each TODO Note
       newTodoItems: [],
 
+      // keeps current Note Index (for deleting)
+      currentNoteIndex: 0,
+
       //initial sample values of TODO Notes
       todoLists: [
           [          
@@ -62,11 +65,6 @@
                 value: '1.3 Learn Nest.js',
                 isDone: false,
               },
-              { 
-                value: '1.4',
-                isDone: false,
-              },
-              
           ],
           [          
               { 
@@ -94,6 +92,10 @@
 
     methods: {
 
+      setCurrentNote(listIndex){
+        this.currentNoteIndex = listIndex;
+        //console.log("current listIndex is " + this.currentNoteIndex);
+      },
       // returns the number of NOT DONE tasks in the todoList
       countOpenTasks (listIndex){
           
@@ -105,7 +107,6 @@
           }
           return i;
       },
-
 
       // adds new TODO Item from the related input to the TODO Note
       addTodoItem(listIndex) {
@@ -126,6 +127,12 @@
             this.todoLists.splice(listIndex, 1);
                  
         }
+      },
+
+      //
+      removeCurrentNote(){
+        this.removeTodoNote(this.currentNoteIndex);
+        this.currentNoteIndex--;
       },
 
       // removes a TODO Item from the todoLists array 
